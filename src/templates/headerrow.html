@@ -1,0 +1,7 @@
+<template>
+    <div class="myrow" style="background-color: #f9f9f9">
+      <div class="col col-header col-front">${row.ColumnTitel1}</div>
+      <div class="col col-header col-second">${row.ColumnTitel2}</div>
+      <compose view-model="templates/headerentry" model.bind="entry" repeat.for="entry of row.HeaderEntries" containerless></compose>
+    </div>
+</template>

@@ -1,0 +1,141 @@
+<template>
+<require from="/styles/default.css"></require>
+<require from="shared/header-format"></require>
+<require from="shared/number-format"></require>
+<section>
+    <h3>Capacity-Demand Balancing Tool</h3>
+    <br>
+
+    <div class="container-fluid">
+    <!-- Viewport Header -->
+      <div class="row">
+        <div class="col-lg-2" style="width: 250px; margin-right:0px;"></div>
+        <div class="week col-lg-10" repeat.for="i of viewport.length" style="float: left;">
+            <p>${viewport[i] | headerFormat }</p>
+        </div>
+      </div>
+
+      <!-- Make to Order Table -->
+      <div class="row">
+        <table class="col-lg-2 table table-striped table-bordered" style="width: 250px; margin-right:0px;">
+          <thead>
+            <tr>
+              <th>Make to Order</th>
+              <th class="col-second">D/W</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          <tr repeat.for="product of products">
+            <td>${product.ProductCode}</td>
+            <td>${product.DiePerWafer}</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <div class="col-lg-10" style="float: left; margin-left: -15px;">
+
+          <div repeat.for="i of viewport.length" style="float: left; margin-left: 0px;">
+            <table class="table table-striped table-bordered" style="width: 100px; margin-right:0px;">
+              <thead>
+                <tr>
+                  <th class="cell">D</th>
+                  <th class="cell">W</th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr repeat.for = "j of products.length">
+
+                <td class="cell" contenteditable="true" blur.trigger="mEntryChanged()" textcontent.two-way="mdemand[i][j].Die"}></td>
+                <td class="cell" textcontent.bind="mdemand[i][j].Wafer | numberFormat: '0.00'"></td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Reserved Capacity Table -->
+      <div class="row">
+        <table class="col-lg-2 table table-striped table-bordered" style="width: 250px; margin-right:0px;">
+          <thead>
+          <tr>
+            <th>Reserved Capacity</th>
+            <th class="col-second">C/Week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="item of rcItems">
+            <td>${item.Description}</td>
+            <td>${item.Capacity | numberFormat: '0.00'}</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <div class="col-lg-10" style="float: left; margin-left: -15px;">
+
+          <div repeat.for="i of viewport.length" style="float: left; margin-left: 0px;">
+            <table class="table table-striped table-bordered" style="width: 100px; margin-right:0px;">
+              <thead>
+                <tr>
+                  <th class="cell"></th>
+                  <th class="cell">W</th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr repeat.for = "j of rcItems.length">
+                <td class="cell"></td>
+                <td class="cell" contenteditable="true" blur.trigger="rEntryChanged()" textcontent.bind="rdemand[i][j].Wafer | numberFormat: '0.00'"></td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Analysis Table -->
+      <div class="row">
+        <table class="col-lg-2 table table-striped table-bordered" style="width: 250px; margin-right:0px;">
+          <thead>
+          <tr>
+            <th>Analysis</th>
+            <th class="col-second"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="item of anItems">
+            <td>${item.target}</td>
+            <td></td>
+          </tr>
+        </tbody>
+        </table>
+
+        <div class="col-lg-10" style="float: left; margin-left: -15px;">
+
+          <div repeat.for="i of viewport.length" style="float: left; margin-left: 0px;">
+            <table class="table table-striped table-bordered" style="width: 100px; margin-right:0px;">
+              <thead>
+                <tr>
+                  <th class="cell"></th>
+                  <th class="cell">W</th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr repeat.for = "j of anItems.length">
+                <td class="cell"></td>
+                <td class="cell" textcontent.bind="compound[i][j].Wafer | numberFormat: '0.00'"></td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+  </div>
+
+</section>
+</template>

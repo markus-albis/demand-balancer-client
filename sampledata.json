@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "article": "PD10V4-T3W.20",
+    "dpw": 10400
+  },
+  {
+    "id": 2,
+    "article": "PD20C1-T3W.40",
+    "dpw": 20000
+  },
+  {
+    "id": 3,
+    "article": "PD20X1-L2S.20",
+    "dpw": 24000
+  },
+  {
+    "id": 4,
+    "article": "PD00D1-E0R.30",
+    "dpw": 41000
+  },
+  {
+    "id": 5,
+    "article": "PD00f1-E0R.10",
+    "dpw": 41000
+  }
+]

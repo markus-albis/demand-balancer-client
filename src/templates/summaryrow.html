@@ -1,0 +1,8 @@
+<template>
+  <require from="shared/number-format"></require>
+  <div class="myrow" style="background-color: #f9f9f9">
+    <div class="col col-front">${row.Description}</div>
+    <div class="col col-second">${row.Rule}</div>
+    <compose view-model="templates/summaryentry" model.bind="entry" repeat.for="entry of row.SummaryEntries" containerless></compose>
+  </div>
+</template>

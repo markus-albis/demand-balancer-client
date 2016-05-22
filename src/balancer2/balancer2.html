@@ -1,0 +1,54 @@
+<template>
+  <require from="/styles/default.css"></require>
+  <require from="shared/header-format"></require>
+  <require from="shared/number-format"></require>
+  <require from="templates/productrow"></require>
+
+  <section>
+      <h3>Capacity-Demand Balancing Tool</h3>
+      <br>
+
+      <div class="container-fluid">
+
+        <!-- Viewport Header -->
+          <div class="row">
+            <div style="float:left; margin-right:0px;"><p style="max-width:230px; width:230px;"></p></div>
+            <div class="week" repeat.for="i of viewport.length" style="float: left;">
+                <p>${viewport[i] | headerFormat }</p>
+            </div>
+          </div>
+
+        <!-- Products / MTO Demand -->
+        <div class="row">
+          <div style="margin-right:0px;">
+              <compose view-model="templates/headerrow" model.bind="row" repeat.for="row of ProductHeaderRows" containerless></compose>
+              <compose view-model="templates/productrow" model.bind="row" repeat.for="row of ProductRows" containerless></compose>
+          </div>
+       </div>
+
+       <br>
+
+       <!-- Reserved Capacity Demand  -->
+       <div class="row">
+         <div style="margin-right:0px;">
+             <compose view-model="templates/headerrow" model.bind="row" repeat.for="row of ReservedHeaderRows" containerless></compose>
+             <compose view-model="templates/reservedrow" model.bind="row" repeat.for="row of ReservedRows" containerless></compose>
+         </div>
+      </div>
+
+      <br>
+
+      <!-- Summaries  -->
+      <div class="row">
+        <div style="margin-right:0px;">
+            <compose view-model="templates/headerrow" model.bind="row" repeat.for="row of SummaryHeaderRows" containerless></compose>
+            <compose view-model="templates/summaryrow" model.bind="row" repeat.for="row of SummaryRows" containerless></compose>
+        </div>
+     </div>
+
+
+
+      </div>
+
+  </section>
+</template>

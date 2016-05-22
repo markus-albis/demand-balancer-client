@@ -1,0 +1,8 @@
+<template>
+    <div class="myrow" style="background-color: #f9f9f9
+    ">
+      <div class="col col-front">${row.ProductCode}</div>
+      <div class="col col-second">${row.DiePerWafer}</div>
+      <compose view-model="templates/productentry" model.bind="entry" repeat.for="entry of row.ProductEntries" containerless></compose>
+    </div>
+</template>
